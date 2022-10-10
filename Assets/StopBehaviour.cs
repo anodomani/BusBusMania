@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class StopBehaviour : MonoBehaviour
 {
-    public BusRouteBehaviour parentRoute;
+    UIManager UM;
     Vector2 baseScale;
     Vector2 targetScale;
+    public BusRouteBehaviour parentRoute;
     // Start is called before the first frame update
     void Start()
     {
+        UM = UIManager.instance;
         parentRoute = GetComponentInParent<BusRouteBehaviour>();
         baseScale = transform.localScale;
         targetScale = baseScale;
@@ -23,9 +25,16 @@ public class StopBehaviour : MonoBehaviour
 
     void OnMouseEnter(){
         targetScale = baseScale * 1.25f;
+        UM.toolTips.Add(parentRoute.stopID);
+    }
+
+    void OnMouseOver(){
+        //print("onMouseStay");
+        
     }
 
     void OnMouseExit(){
         targetScale = baseScale;
+        UM.toolTips.Remove(parentRoute.stopID);
     }
 }

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        selectedEntity = this.gameObject;
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
                 if(onSelect != null){onSelect();}
             } else{
                 if(onUnselect != null){onUnselect();}
-                selectedEntity = null;
+                selectedEntity = this.gameObject;
             }
         }
         if(Vector2.Distance(player.transform.position, destination) < 0.5f){

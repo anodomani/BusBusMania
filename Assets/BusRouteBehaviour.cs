@@ -8,6 +8,8 @@ public class BusRouteBehaviour : MonoBehaviour
     LineRenderer lineRenderer;
     public List<Transform> stopsOnRoute;
     public List<Transform> nodesOnRoute;
+    public string stopID;
+    
     // Start is called before the first frame update
     void Start()
     {
