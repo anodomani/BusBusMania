@@ -7,7 +7,7 @@ public class CameraBehaviour : MonoBehaviour
  
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0))
         {
             float speed = cameraDragSpeed * Time.deltaTime;
             Camera.main.transform.position -= new Vector3(Input.GetAxis("Mouse X") * speed, Input.GetAxis("Mouse Y") * speed, 0);

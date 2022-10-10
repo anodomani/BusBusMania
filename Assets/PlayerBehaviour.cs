@@ -15,6 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
         GM = GameManager.instance;
         lineRenderer = GetComponent<LineRenderer>();
         GM.onUnselect += Unselect;
+        targetPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -25,6 +26,8 @@ public class PlayerBehaviour : MonoBehaviour
         if(GM.selectedEntity == this.gameObject){
             //transform.position = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             lineRenderer.SetPosition(1, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        } else{
+            lineRenderer.SetPosition(1, targetPosition);
         }
     }
 

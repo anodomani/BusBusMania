@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
+    public GameObject player;
     public static GameManager instance;
     public GameObject selectedEntity;
     public event System.Action onSelect;
     public event System.Action onUnselect;
     public GameObject busStop;
     public GameObject bus;
+    public Vector2 destination;
+    public Vector2 destinationMin;
+    public Vector2 destinationMax;
 
     void Awake(){
         if (instance != null && instance != this)
@@ -41,6 +44,9 @@ public class GameManager : MonoBehaviour
                 if(onUnselect != null){onUnselect();}
                 selectedEntity = null;
             }
+        }
+        if(Vector2.Distance(player.transform.position, destination) < 0.5f){
+            destination = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.x, destinationMax.x));
         }
     }
 }
