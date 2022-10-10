@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class StopBehaviour : MonoBehaviour
 {
+    public BusRouteBehaviour parentRoute;
     Vector2 baseScale;
     Vector2 targetScale;
     // Start is called before the first frame update
     void Start()
     {
+        parentRoute = GetComponentInParent<BusRouteBehaviour>();
         baseScale = transform.localScale;
         targetScale = baseScale;
     }
