@@ -24,6 +24,7 @@ public class PlayerBehaviour : MonoBehaviour
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, transform.position);
         if(GM.selectedEntity == this.gameObject){
+            
             //transform.position = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             lineRenderer.SetPosition(1, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition));
         } else{
@@ -38,6 +39,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     public void Unselect(){
         if(GM.selectedEntity == this.gameObject){
+            FindObjectOfType<AudioManager>().Play("pickup");
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
         }
     }

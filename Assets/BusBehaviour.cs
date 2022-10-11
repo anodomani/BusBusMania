@@ -33,6 +33,7 @@ public class BusBehaviour : MonoBehaviour
                 if(transform.position == currentStop.position){
                     if(layOverTime < 1){
                         if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1){
+                            FindObjectOfType<AudioManager>().Play("bus_stop");
                             currentTargetIndex++;
                         }else{
                             currentTargetIndex = 0;

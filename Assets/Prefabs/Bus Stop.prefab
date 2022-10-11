@@ -112,3 +112,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19e674c20ce5f364f810e2343ea8f6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentRoute: {fileID: 0}

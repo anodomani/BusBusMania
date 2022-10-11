@@ -1367,6 +1367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bus Stop
       objectReference: {fileID: 0}
+    - target: {fileID: 7170572652042190879, guid: b1cc0e1536a82e145b88c987987c7cd7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1cc0e1536a82e145b88c987987c7cd7, type: 3}
 --- !u!4 &1320013204 stripped
