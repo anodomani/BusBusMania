@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +17,8 @@ public class GameManager : MonoBehaviour
     public Vector2 destination;
     public Vector2 destinationMin;
     public Vector2 destinationMax;
+    private float startTime = 180f;
+    [SerializeField] TMP_Text timerText;
 
     void Awake(){
         if (instance != null && instance != this)
@@ -27,13 +32,36 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         selectedEntity = this.gameObject;
     }
+
+  
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
+        startTime -= Time.deltaTime;
+        float minutes = Mathf.FloorToInt(startTime / 60);
+        float seconds = Mathf.FloorToInt(startTime % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+    
+        if (startTime < 4f)
+        {
+            timerText.color = Color.red;
+           
+        }
+
+        if (startTime <= 0)
+        {
+         
+            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+            //SceneManager.LoadScene("Win", LoadSceneMode.Single);
+
+        }
+
+        if (Input.GetMouseButtonDown(0)){
             Collider2D hit  = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             if(hit != null){ print("hitting " + hit.gameObject.name); }
             if(hit != null && hit.gameObject != selectedEntity){
@@ -48,5 +76,6 @@ public class GameManager : MonoBehaviour
         if(Vector2.Distance(player.transform.position, destination) < 0.5f){
             destination = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.x, destinationMax.x));
         }
+        
     }
 }
