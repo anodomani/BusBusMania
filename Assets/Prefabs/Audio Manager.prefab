@@ -92,3 +92,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: success
+    clip: {fileID: 8300000, guid: 7fef8a63085b4844c9dacd0e2c181d42, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
