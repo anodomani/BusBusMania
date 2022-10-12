@@ -11,4 +11,10 @@ public class ButtonBehaviour : MonoBehaviour
     public void ExitVehicle(){
         GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = null;
     }
+    public void ZoomIn(){
+        Camera.main.orthographicSize += 1;
+    }
+    public void ZoomOut(){
+        Camera.main.orthographicSize -= 1;
+    }
 }
