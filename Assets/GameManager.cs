@@ -14,11 +14,12 @@ public class GameManager : MonoBehaviour
     public event System.Action onUnselect;
     public GameObject busStop;
     public GameObject bus;
-    public Vector2 destination;
+    public GameObject destination;
     public Vector2 destinationMin;
     public Vector2 destinationMax;
     private float startTime = 180f;
     [SerializeField] TMP_Text timerText;
+    public int score;
 
     void Awake(){
         if (instance != null && instance != this)
@@ -27,12 +28,12 @@ public class GameManager : MonoBehaviour
         } else {
             instance = this;
         }
+        RandomizeDestination();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         selectedEntity = this.gameObject;
     }
 
@@ -50,18 +51,16 @@ public class GameManager : MonoBehaviour
         if (startTime < 4f)
         {
             timerText.color = Color.red;
-           
         }
-
         if (startTime <= 0)
         {
-         
             SceneManager.LoadScene("Lose", LoadSceneMode.Single);
-            //SceneManager.LoadScene("Win", LoadSceneMode.Single);
-
         }
-
+        if(score > 5){
+            SceneManager.LoadScene("Win", LoadSceneMode.Single);
+        }
         if (Input.GetMouseButtonDown(0)){
+            AudioManager.Instance.Play("click");
             Collider2D hit  = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             if(hit != null){ print("hitting " + hit.gameObject.name); }
             if(hit != null && hit.gameObject != selectedEntity){
@@ -73,9 +72,16 @@ public class GameManager : MonoBehaviour
                 selectedEntity = this.gameObject;
             }
         }
-        if(Vector2.Distance(player.transform.position, destination) < 0.5f){
-            destination = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.x, destinationMax.x));
+        if(Vector2.Distance(player.transform.position, destination.transform.position) < 1){
+            AudioManager.Instance.Play("success");
+            score++;
+            RandomizeDestination();
         }
-        
+    }
+    public void RandomizeDestination(){
+        destination.transform.position = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.y, destinationMax.y));
+        while(Vector2.Distance(player.transform.position, destination.transform.position) < 4){
+            destination.transform.position = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.y, destinationMax.y));
+        }
     }
 }

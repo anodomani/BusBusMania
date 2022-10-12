@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float moveSpeed;
     public Sprite baseSprite;
     public Sprite heldSprite;
+    public GameObject inside;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class PlayerBehaviour : MonoBehaviour
     
     public void Unselect(){
         if(GM.selectedEntity == this.gameObject){
-            FindObjectOfType<AudioManager>().Play("pickup");
+            AudioManager.Instance.Play("pickup");
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
         }
     }
