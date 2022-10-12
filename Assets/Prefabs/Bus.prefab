@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8931319818425577491}
   - component: {fileID: 1349078786216967836}
   - component: {fileID: 9217821554421033407}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.5, y: 12}
+    oldSize: {x: 4.285714, y: 6.857143}
     newSize: {x: 6.04, y: 9.69}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

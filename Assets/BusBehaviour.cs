@@ -32,8 +32,8 @@ public class BusBehaviour : MonoBehaviour
                 currentStop = busRouteBehaviour.nodesOnRoute[currentTargetIndex];
                 if(transform.position == currentStop.position){
                     if(layOverTime < 1){
-                        if(GameManager.instance.player.GetComponent<PlayerBehaviour>().inside == currentStop){
-                            print("picking up player");
+                        if(Vector2.Distance(this.gameObject.transform.position, GameManager.instance.player.transform.position) < 1f){
+                            print("picking up player ");
                             GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = this.gameObject;
                         }
                         if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1){

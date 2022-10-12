@@ -51,6 +51,8 @@ public class PlayerBehaviour : MonoBehaviour
             spriteRenderer.sprite = baseSprite;
         }
         if(inside != null){
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position);
             transform.position = inside.transform.position + new Vector3(0, 1, 0);
         }
     }

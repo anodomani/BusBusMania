@@ -46,8 +46,7 @@ public class GameManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(startTime / 60);
         float seconds = Mathf.FloorToInt(startTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
-    
+        
         if (startTime < 4f)
         {
             timerText.color = Color.red;
@@ -74,7 +73,7 @@ public class GameManager : MonoBehaviour
                 selectedEntity = this.gameObject;
             }
         }
-        if(Vector2.Distance(player.transform.position, destination.transform.position) < 1){
+        if(Vector2.Distance(player.transform.position, destination.transform.position) < 1.5f){
             AudioManager.Instance.Play("success");
             score++;
             RandomizeDestination();

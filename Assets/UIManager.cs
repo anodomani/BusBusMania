@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     GameManager GM;
     public TMP_Text toolTip;
     public List<string> toolTips;
+    public TMP_Text scoreDisplay;
 
     void Awake(){
         if (instance != null && instance != this)
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scoreDisplay.text = GM.score.ToString();
         toolTip.transform.position = Input.mousePosition;
         /*
         if(GM.selectedEntity != GM.gameObject){
