@@ -113,3 +113,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentRoute: {fileID: 0}
+  trueStop: 1

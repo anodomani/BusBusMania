@@ -51,6 +51,8 @@ MonoBehaviour:
   moveSpeed: 0.5
   baseSprite: {fileID: 21300000, guid: 7986e4edd93a3b847998d73031bf1ee9, type: 3}
   heldSprite: {fileID: 21300000, guid: df36fdb4d5d896b47bd79412b0aacf1c, type: 3}
+  inside: {fileID: 0}
+  currentTarget: {fileID: 0}
 --- !u!212 &1682588638531319965
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -119,14 +121,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 8}
+    oldSize: {x: 3, y: 6}
     newSize: {x: 80, y: 80}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 6}
+  m_Size: {x: 7, y: 10}
   m_EdgeRadius: 0
 --- !u!120 &1682588638531319962
 LineRenderer:

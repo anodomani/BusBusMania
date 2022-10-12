@@ -34,7 +34,7 @@ public class PlayerBehaviour : MonoBehaviour
         if(inside != null){targetScale = baseScale * 0.8f;} else{targetScale = baseScale;}
         transform.localScale = Vector2.Lerp(transform.localScale, targetScale, 0.5f);
         if(currentTarget != null){
-            if(Vector2.Distance(transform.position, currentTarget.transform.position) < 1){
+            if(Vector2.Distance(transform.position, currentTarget.transform.position) < 1.5){
                 inside = currentTarget;
                 currentTarget = null;
             }
@@ -59,7 +59,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     void FixedUpdate(){
         //move towards target position
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed);
+        if(GM.selectedEntity != this.gameObject){
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed);
+        }
     }
     
     public void Unselect(){

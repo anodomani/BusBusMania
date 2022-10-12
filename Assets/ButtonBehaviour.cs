@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ButtonBehaviour : MonoBehaviour
 {
+    CameraBehaviour cameraBehaviour;
+
+    public void Start(){
+        cameraBehaviour = Camera.main.GetComponent<CameraBehaviour>();
+    }
     public void RecenterCamera(){
-        Camera.main.transform.position = new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y, Camera.main.transform.position.z);
+        cameraBehaviour.followPlayer = true;
     }
 
     public void ExitVehicle(){

@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject busStop;
     public GameObject bus;
     public GameObject destination;
-    public Vector2 destinationMin;
-    public Vector2 destinationMax;
+    public Bounds destinationBounds;
     private float startTime = 180f;
     [SerializeField] TMP_Text timerText;
     public int score;
@@ -58,17 +57,23 @@ public class GameManager : MonoBehaviour
         if(score > 5){
             SceneManager.LoadScene("Win", LoadSceneMode.Single);
         }
-        if (Input.GetMouseButtonDown(0)){
-            Collider2D hit  = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            if(hit != null){ 
-                print("hitting " + hit.gameObject.name); 
+        if(Input.GetMouseButtonDown(0)){
+            Collider2D[] hit  = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            if(hit.Length > 0){
                 AudioManager.Instance.Play("click");
+                foreach(Collider2D i in hit){
+                    print("hitting " + i.gameObject.name); 
+                    if(i != null && i.gameObject != selectedEntity){
+                        if(onUnselect != null){onUnselect();}
+                        selectedEntity = i.gameObject;
+                        if(onSelect != null){onSelect();}
+                        if(i.gameObject == player){
+                            break;
+                        }
+                    }
+                }
             }
-            if(hit != null && hit.gameObject != selectedEntity){
-                if(onUnselect != null){onUnselect();}
-                selectedEntity = hit.gameObject;
-                if(onSelect != null){onSelect();}
-            } else{
+            else{
                 if(onUnselect != null){onUnselect();}
                 selectedEntity = this.gameObject;
             }
@@ -80,9 +85,9 @@ public class GameManager : MonoBehaviour
         }
     }
     public void RandomizeDestination(){
-        destination.transform.position = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.y, destinationMax.y));
+        destination.transform.position = new Vector2(Random.Range(destinationBounds.min.x, destinationBounds.max.x), Random.Range(destinationBounds.min.y, destinationBounds.max.y));
         while(Vector2.Distance(player.transform.position, destination.transform.position) < 4){
-            destination.transform.position = new Vector2(Random.Range(destinationMin.x, destinationMax.x), Random.Range(destinationMin.y, destinationMax.y));
+            destination.transform.position = new Vector2(Random.Range(destinationBounds.min.x, destinationBounds.max.x), Random.Range(destinationBounds.min.y, destinationBounds.max.y));
         }
     }
 }

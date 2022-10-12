@@ -16,20 +16,15 @@ public class BusRouteBehaviour : MonoBehaviour
     {
         GM = GameManager.instance;
         lineRenderer = GetComponent<LineRenderer>();
+        stopsOnRoute = new List<Transform>();
+        nodesOnRoute = new List<Transform>();
         //set line
         for (int i = 0; i < transform.childCount; i++){
             nodesOnRoute.Add(transform.GetChild(i));
             if(transform.GetChild(i).tag == "Stop"){
                 stopsOnRoute.Add(transform.GetChild(i));
             }
-        }/*
-        Gradient routeGradient = new Gradient();
-        GradientColorKey[] colorKey = new GradientColorKey[1];
-        colorKey[0].color = routeColor;
-        colorKey[0].time = 0;
-        GradientAlphaKey[] alphaKey = new GradientAlphaKey[1];
-        alphaKey[0].alpha = 1.0f;
-        alphaKey[0].time = 0;*/
+        }
         lineRenderer.startColor = routeColor;
         lineRenderer.endColor = routeColor;
         lineRenderer.positionCount = nodesOnRoute.Count + 1;
@@ -45,5 +40,16 @@ public class BusRouteBehaviour : MonoBehaviour
             lineRenderer.SetPosition(i, nodesOnRoute[i].position);
         }
         lineRenderer.SetPosition(nodesOnRoute.Count, nodesOnRoute[0].position);
+    }
+
+    void OnDrawGizmos(){
+        nodesOnRoute = new List<Transform>();
+        for (int i = 0; i < transform.childCount; i++){
+            nodesOnRoute.Add(transform.GetChild(i));
+        }
+        Gizmos.color = routeColor;
+        for(int i = 0; i < nodesOnRoute.Count - 1; i++){
+            Gizmos.DrawLine(nodesOnRoute[i].position, nodesOnRoute[i+1].position);
+        }
     }
 }
