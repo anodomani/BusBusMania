@@ -71,9 +71,13 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6103384389290065601, guid: b1cc0e1536a82e145b88c987987c7cd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 6103384389290065602, guid: b1cc0e1536a82e145b88c987987c7cd7, type: 3}
       propertyPath: m_Name
-      value: Empty Node Variant
+      value: Empty Node
       objectReference: {fileID: 0}
     - target: {fileID: 6103384389290065602, guid: b1cc0e1536a82e145b88c987987c7cd7, type: 3}
       propertyPath: m_TagString

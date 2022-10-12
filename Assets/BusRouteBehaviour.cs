@@ -9,6 +9,7 @@ public class BusRouteBehaviour : MonoBehaviour
     public List<Transform> stopsOnRoute;
     public List<Transform> nodesOnRoute;
     public string stopID;
+    public Color routeColor;
     
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,19 @@ public class BusRouteBehaviour : MonoBehaviour
             if(transform.GetChild(i).tag == "Stop"){
                 stopsOnRoute.Add(transform.GetChild(i));
             }
-        }
+        }/*
+        Gradient routeGradient = new Gradient();
+        GradientColorKey[] colorKey = new GradientColorKey[1];
+        colorKey[0].color = routeColor;
+        colorKey[0].time = 0;
+        GradientAlphaKey[] alphaKey = new GradientAlphaKey[1];
+        alphaKey[0].alpha = 1.0f;
+        alphaKey[0].time = 0;*/
+        lineRenderer.startColor = routeColor;
+        lineRenderer.endColor = routeColor;
         lineRenderer.positionCount = nodesOnRoute.Count + 1;
         GameObject newBus = Instantiate(GM.bus, GM.transform);
+        newBus.GetComponent<SpriteRenderer>().color = routeColor;
         newBus.GetComponent<BusBehaviour>().busRouteBehaviour = this;
     }
 

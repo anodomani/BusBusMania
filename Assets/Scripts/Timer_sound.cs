@@ -12,6 +12,6 @@ public class Timer_sound : MonoBehaviour
 
     void SoundTimer()
     {
-        FindObjectOfType<AudioManager>().Play("timer");
+        AudioManager.Instance.Play("timer");
     }
 }

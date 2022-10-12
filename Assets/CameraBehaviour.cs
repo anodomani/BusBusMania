@@ -3,7 +3,7 @@ using System.Collections;
  
 public class CameraBehaviour : MonoBehaviour
 {
-    public int cameraDragSpeed = 50;
+    public int cameraDragSpeed = 200;
  
     private void Update()
     {
