@@ -60,9 +60,11 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Win", LoadSceneMode.Single);
         }
         if (Input.GetMouseButtonDown(0)){
-            AudioManager.Instance.Play("click");
             Collider2D hit  = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            if(hit != null){ print("hitting " + hit.gameObject.name); }
+            if(hit != null){ 
+                print("hitting " + hit.gameObject.name); 
+                AudioManager.Instance.Play("click");
+            }
             if(hit != null && hit.gameObject != selectedEntity){
                 if(onUnselect != null){onUnselect();}
                 selectedEntity = hit.gameObject;
