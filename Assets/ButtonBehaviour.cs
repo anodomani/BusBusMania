@@ -7,4 +7,8 @@ public class ButtonBehaviour : MonoBehaviour
     public void RecenterCamera(){
         Camera.main.transform.position = new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y, Camera.main.transform.position.z);
     }
+
+    public void ExitVehicle(){
+        GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = null;
+    }
 }

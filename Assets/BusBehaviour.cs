@@ -33,7 +33,8 @@ public class BusBehaviour : MonoBehaviour
                 if(transform.position == currentStop.position){
                     if(layOverTime < 1){
                         if(GameManager.instance.player.GetComponent<PlayerBehaviour>().inside == currentStop){
-                            
+                            print("picking up player");
+                            GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = this.gameObject;
                         }
                         if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1){
                             FindObjectOfType<AudioManager>().Play("bus_stop");

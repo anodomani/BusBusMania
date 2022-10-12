@@ -8,10 +8,12 @@ public class StopBehaviour : MonoBehaviour
     Vector2 baseScale;
     Vector2 targetScale;
     public BusRouteBehaviour parentRoute;
+    PlayerBehaviour playerBehaviour;
     // Start is called before the first frame update
     void Start()
     {
         UM = UIManager.instance;
+        playerBehaviour = GameManager.instance.player.GetComponent<PlayerBehaviour>();
         parentRoute = GetComponentInParent<BusRouteBehaviour>();
         baseScale = transform.localScale;
         targetScale = baseScale;
@@ -24,6 +26,9 @@ public class StopBehaviour : MonoBehaviour
     }
 
     void OnMouseEnter(){
+        if(GameManager.instance.selectedEntity == GameManager.instance.player){
+            playerBehaviour.currentTarget = this.gameObject;
+        }
         targetScale = baseScale * 1.25f;
         UM.toolTips.Add(parentRoute.stopID);
     }
@@ -34,6 +39,9 @@ public class StopBehaviour : MonoBehaviour
     }
 
     void OnMouseExit(){
+        if(GameManager.instance.selectedEntity == GameManager.instance.player && playerBehaviour.currentTarget == this.gameObject){
+            playerBehaviour.currentTarget = null;
+        }
         targetScale = baseScale;
         UM.toolTips.Remove(parentRoute.stopID);
     }
