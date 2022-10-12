@@ -20,6 +20,8 @@ public class CameraBehaviour : MonoBehaviour
         if(followPlayer == true){
             Camera.main.transform.position = new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y, Camera.main.transform.position.z);
         }
-        Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * cameraZoomScrollSpeed;
+        if((Camera.main.orthographicSize - Input.GetAxis("Mouse ScrollWheel") * cameraZoomScrollSpeed) > cameraZoomMin && (Camera.main.orthographicSize - Input.GetAxis("Mouse ScrollWheel") * cameraZoomScrollSpeed) < cameraZoomMax){
+            Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * cameraZoomScrollSpeed;
+        }
     }
 }

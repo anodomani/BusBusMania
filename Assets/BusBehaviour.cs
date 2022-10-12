@@ -11,11 +11,12 @@ public class BusBehaviour : MonoBehaviour
     public Transform currentStop;
     public int layOverTime;
     public int maxLayOverTime;
+    public Vector2 scaleBounds = new Vector2(4, 20);
+    Vector2 baseScale, targetScale;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentTargetIndex = Random.Range(0, busRouteBehaviour.nodesOnRoute.Count-1);
         transform.position = busRouteBehaviour.nodesOnRoute[currentTargetIndex].transform.position;
     }
 

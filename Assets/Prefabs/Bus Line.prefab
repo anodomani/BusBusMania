@@ -146,6 +146,8 @@ MonoBehaviour:
   nodesOnRoute: []
   stopID: 
   routeColor: {r: 0, g: 0, b: 0, a: 0}
+  busesOnRoute: 1
+  scaleBounds: {x: 1, y: 2}
 --- !u!1001 &7316544244824574730
 PrefabInstance:
   m_ObjectHideFlags: 0

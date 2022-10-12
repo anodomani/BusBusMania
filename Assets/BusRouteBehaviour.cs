@@ -10,6 +10,8 @@ public class BusRouteBehaviour : MonoBehaviour
     public List<Transform> nodesOnRoute;
     public string stopID;
     public Color routeColor;
+    public int busesOnRoute = 1;
+    float baseScale, targetScale;
     
     // Start is called before the first frame update
     void Start()
@@ -28,18 +30,32 @@ public class BusRouteBehaviour : MonoBehaviour
         lineRenderer.startColor = routeColor;
         lineRenderer.endColor = routeColor;
         lineRenderer.positionCount = nodesOnRoute.Count + 1;
-        GameObject newBus = Instantiate(GM.bus, GM.transform);
-        newBus.GetComponent<SpriteRenderer>().color = routeColor;
-        newBus.GetComponent<BusBehaviour>().busRouteBehaviour = this;
+        
+        for(int i = 0; i < busesOnRoute; i++){
+            GameObject newBus = Instantiate(GM.bus, GM.transform);
+            newBus.GetComponent<BusBehaviour>().currentTargetIndex = (int)(1);
+            newBus.GetComponent<SpriteRenderer>().color = routeColor;
+            newBus.GetComponent<BusBehaviour>().busRouteBehaviour = this;
+        }
+        
+        for(int i = 0; i < nodesOnRoute.Count; i++){
+            lineRenderer.SetPosition(i, nodesOnRoute[i].position);
+        }
+        lineRenderer.SetPosition(nodesOnRoute.Count, nodesOnRoute[0].position);
+
+        baseScale = lineRenderer.startWidth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < nodesOnRoute.Count; i++){
-            lineRenderer.SetPosition(i, nodesOnRoute[i].position);
+        if(stopsOnRoute.Contains(GameManager.instance.selectedEntity.transform)){
+            targetScale = baseScale * 2;
+        }else{
+            targetScale = baseScale;
         }
-        lineRenderer.SetPosition(nodesOnRoute.Count, nodesOnRoute[0].position);
+        lineRenderer.startWidth = Mathf.Lerp(lineRenderer.startWidth, targetScale, 0.5f);
+        lineRenderer.endWidth = Mathf.Lerp(lineRenderer.endWidth, targetScale, 0.5f);
     }
 
     void OnDrawGizmos(){

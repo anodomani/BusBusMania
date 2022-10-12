@@ -13,8 +13,9 @@ public class PlayerBehaviour : MonoBehaviour
     public Sprite heldSprite;
     public GameObject inside;
     public GameObject currentTarget;
-
+    public Vector2 scaleBounds = new Vector2(4, 20);
     Vector2 baseScale, targetScale;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,9 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         if(inside != null){targetScale = baseScale * 0.8f;} else{targetScale = baseScale;}
+        if(Camera.main.orthographicSize > targetScale.x && Camera.main.orthographicSize/30 < targetScale.y){
+            targetScale = targetScale * (Camera.main.orthographicSize/30);
+        }
         transform.localScale = Vector2.Lerp(transform.localScale, targetScale, 0.5f);
         if(currentTarget != null){
             if(Vector2.Distance(transform.position, currentTarget.transform.position) < 1.5){
@@ -53,7 +57,7 @@ public class PlayerBehaviour : MonoBehaviour
         if(inside != null){
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, transform.position);
-            transform.position = inside.transform.position + new Vector3(0, 1, 0);
+            transform.position = inside.transform.position + new Vector3(0, 0.5f, 0);
         }
     }
 
