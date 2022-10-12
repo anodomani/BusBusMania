@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StopBehaviour : MonoBehaviour
 {
+    public bool mainStop;
     UIManager UM;
     Vector2 baseScale;
     Vector2 targetScale;
@@ -24,8 +25,10 @@ public class StopBehaviour : MonoBehaviour
     }
 
     void OnMouseEnter(){
-        targetScale = baseScale * 1.25f;
-        UM.toolTips.Add(parentRoute.stopID);
+        if(mainStop){
+            targetScale = baseScale * 2f;
+            UM.toolTips.Add(parentRoute.stopID);
+        }
     }
 
     void OnMouseOver(){
