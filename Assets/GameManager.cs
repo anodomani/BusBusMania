@@ -52,10 +52,10 @@ public class GameManager : MonoBehaviour
         }
         if (startTime <= 0)
         {
-            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+            SceneManager.LoadScene("LosePC", LoadSceneMode.Single);
         }
         if(score > 5){
-            SceneManager.LoadScene("Win", LoadSceneMode.Single);
+            SceneManager.LoadScene("WinPC", LoadSceneMode.Single);
         }
         if(Input.GetMouseButtonDown(0)){
             Collider2D[] hit  = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
