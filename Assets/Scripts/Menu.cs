@@ -15,4 +15,9 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
+
+    public void ResetPC()
+    {
+        SceneManager.LoadScene("MenuPC", LoadSceneMode.Single);
+    }
 }

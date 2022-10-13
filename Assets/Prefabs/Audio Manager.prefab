@@ -52,31 +52,31 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: explosion
     clip: {fileID: 8300000, guid: 83d9ee31f4be53e4b8ead47879c936b8, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: timer
     clip: {fileID: 8300000, guid: ec21e6cdf473d0d4cb1177d613511afa, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: lost
     clip: {fileID: 8300000, guid: 5385a303a3cb7bb4b8a46ffefe7863ba, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: pickup
     clip: {fileID: 8300000, guid: e709e021b51b54d419b0d8c5eb3d7dc7, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: congrats
     clip: {fileID: 8300000, guid: 18d73472ba9a91a4fa155b17cf756696, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -88,13 +88,19 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: bus_stop
     clip: {fileID: 8300000, guid: 1cbdc42235546ef468fb5fdc5465916f, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: success
     clip: {fileID: 8300000, guid: 7fef8a63085b4844c9dacd0e2c181d42, type: 3}
-    volume: 0.2
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: arrive
+    clip: {fileID: 8300000, guid: 35a6d5df59e2a054fb52f143522e6ad5, type: 3}
+    volume: 0.15
     pitch: 1
     loop: 0
     source: {fileID: 0}

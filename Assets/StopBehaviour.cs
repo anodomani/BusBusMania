@@ -30,7 +30,9 @@ public class StopBehaviour : MonoBehaviour
         if(trueStop){
             if(GameManager.instance.selectedEntity == GameManager.instance.player){
                 playerBehaviour.currentTarget = this.gameObject;
+                
             }
+            
             targetScale = baseScale * 2f;
             UM.toolTips.Add(parentRoute.stopID);
         }
@@ -45,7 +47,9 @@ public class StopBehaviour : MonoBehaviour
         if(trueStop){
             if(GameManager.instance.selectedEntity == GameManager.instance.player && playerBehaviour.currentTarget == this.gameObject){
                 playerBehaviour.currentTarget = null;
+                
             }
+            
             targetScale = baseScale;
             UM.toolTips.Remove(parentRoute.stopID);
         }

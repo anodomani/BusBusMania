@@ -17821,7 +17821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
       propertyPath: sounds.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
       propertyPath: sounds.Array.data[8].clip
@@ -17830,6 +17830,14 @@ PrefabInstance:
     - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
       propertyPath: sounds.Array.data[8].name
       value: success
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
+      propertyPath: sounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 35a6d5df59e2a054fb52f143522e6ad5, type: 3}
+    - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
+      propertyPath: sounds.Array.data[9].name
+      value: arrive
       objectReference: {fileID: 0}
     - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
       propertyPath: sounds.Array.data[8].pitch
@@ -17850,6 +17858,10 @@ PrefabInstance:
     - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
       propertyPath: sounds.Array.data[8].volume
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868430639996348287, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
+      propertyPath: sounds.Array.data[9].volume
+      value: 0.414
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5c7c566fb8b6d147b7d05e069fefc45, type: 3}
