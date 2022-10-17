@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9217821554421033407}
   m_Layer: 2
   m_Name: Bus
-  m_TagString: Untagged
+  m_TagString: Bus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,9 @@ MonoBehaviour:
   currentTargetIndex: 0
   currentStop: {fileID: 0}
   layOverTime: 0
-  maxLayOverTime: 100
+  maxLayOverTime: 50
+  scaleBounds: {x: 4, y: 20}
+  returning: 0
 --- !u!95 &-497323401975347649
 Animator:
   serializedVersion: 3

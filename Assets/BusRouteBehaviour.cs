@@ -29,19 +29,27 @@ public class BusRouteBehaviour : MonoBehaviour
         }
         lineRenderer.startColor = routeColor;
         lineRenderer.endColor = routeColor;
-        lineRenderer.positionCount = nodesOnRoute.Count + 1;
+        lineRenderer.positionCount = nodesOnRoute.Count;
         
         for(int i = 0; i < busesOnRoute; i++){
             GameObject newBus = Instantiate(GM.bus, GM.transform);
-            newBus.GetComponent<BusBehaviour>().currentTargetIndex = (int)(1);
+            BusBehaviour newBusBehaviour = newBus.GetComponent<BusBehaviour>();
+            newBusBehaviour.currentTargetIndex = (nodesOnRoute.Count/busesOnRoute) * i;
+            newBusBehaviour.busRouteBehaviour = this;
             newBus.GetComponent<SpriteRenderer>().color = routeColor;
-            newBus.GetComponent<BusBehaviour>().busRouteBehaviour = this;
+
+            GameObject newBusReturning = Instantiate(GM.bus, GM.transform);
+            BusBehaviour newBusBehaviourReturning = newBusReturning.GetComponent<BusBehaviour>();
+            newBusBehaviourReturning.currentTargetIndex = (nodesOnRoute.Count/busesOnRoute) * i;
+            newBusBehaviourReturning.busRouteBehaviour = this;
+            newBusBehaviourReturning.returning = true;
+            newBusReturning.GetComponent<SpriteRenderer>().color = routeColor;
         }
         
         for(int i = 0; i < nodesOnRoute.Count; i++){
             lineRenderer.SetPosition(i, nodesOnRoute[i].position);
         }
-        lineRenderer.SetPosition(nodesOnRoute.Count, nodesOnRoute[0].position);
+        //lineRenderer.SetPosition(nodesOnRoute.Count, nodesOnRoute[0].position);
 
         baseScale = lineRenderer.startWidth;
     }
@@ -49,7 +57,7 @@ public class BusRouteBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(stopsOnRoute.Contains(GameManager.instance.selectedEntity.transform)){
+        if(GameManager.instance.selectedEntity != null && stopsOnRoute.Contains(GameManager.instance.selectedEntity.transform)){
             targetScale = baseScale * 2;
         }else{
             targetScale = baseScale;

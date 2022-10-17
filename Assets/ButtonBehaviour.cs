@@ -13,6 +13,10 @@ public class ButtonBehaviour : MonoBehaviour
         cameraBehaviour.followPlayer = true;
     }
 
+    public void RecenterCameraDestination(){
+        cameraBehaviour.transform.position = new Vector3(GameManager.instance.destination.transform.position.x, GameManager.instance.destination.transform.position.y, Camera.main.transform.position.z);
+    }
+
     public void ExitVehicle(){
         GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = null;
     }

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject bus;
     public GameObject destination;
     public Bounds destinationBounds;
+    public GameObject destinationsContainer;
+    public List<Transform> destinations;
     private float startTime = 180f;
     [SerializeField] TMP_Text timerText;
     public int score;
@@ -27,16 +29,20 @@ public class GameManager : MonoBehaviour
         } else {
             instance = this;
         }
-        RandomizeDestination();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         selectedEntity = this.gameObject;
+        /*
+        for(int i = 0; i < destinationsContainer.transform.childCount; i++){
+            print(i + ", " + destinationsContainer);
+            destinations.Add(transform.GetChild(i));
+        }
+        */
+        RandomizeDestination();
     }
-
-  
 
     // Update is called once per frame
     void Update()
@@ -78,16 +84,20 @@ public class GameManager : MonoBehaviour
                 selectedEntity = this.gameObject;
             }
         }
-        if(Vector2.Distance(player.transform.position, destination.transform.position) < 1.5f){
+        if(Vector2.Distance(player.transform.position, destination.transform.position) < 2.5f){
             AudioManager.Instance.Play("success");
             score++;
             RandomizeDestination();
         }
     }
+    
     public void RandomizeDestination(){
+        destination = destinations[Random.Range(0, destinations.Count)].gameObject;
+        /*
         destination.transform.position = new Vector2(Random.Range(destinationBounds.min.x, destinationBounds.max.x), Random.Range(destinationBounds.min.y, destinationBounds.max.y));
         while(Vector2.Distance(player.transform.position, destination.transform.position) < 4){
             destination.transform.position = new Vector2(Random.Range(destinationBounds.min.x, destinationBounds.max.x), Random.Range(destinationBounds.min.y, destinationBounds.max.y));
         }
+        */
     }
 }

@@ -13,6 +13,7 @@ public class BusBehaviour : MonoBehaviour
     public int maxLayOverTime;
     public Vector2 scaleBounds = new Vector2(4, 20);
     Vector2 baseScale, targetScale;
+    public bool returning;
 
     // Start is called before the first frame update
     void Start()
@@ -28,30 +29,38 @@ public class BusBehaviour : MonoBehaviour
     void FixedUpdate()
     {
         if(transform.position == busRouteBehaviour.nodesOnRoute[currentTargetIndex].transform.position){
-
             if(busRouteBehaviour.stopsOnRoute.Contains(busRouteBehaviour.nodesOnRoute[currentTargetIndex])){
                 currentStop = busRouteBehaviour.nodesOnRoute[currentTargetIndex];
                 if(transform.position == currentStop.position){
                     if(layOverTime < 1){
-                        if(Vector2.Distance(this.gameObject.transform.position, GameManager.instance.player.transform.position) < 1f){
-                            print("picking up player ");
-                            GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = this.gameObject;
+                        if(Vector2.Distance(this.gameObject.transform.position, GameManager.instance.player.transform.position) < 1f && GameManager.instance.player.TryGetComponent(out PlayerBehaviour playerBehaviour)){
+                            if(playerBehaviour.inside != null && playerBehaviour.inside.tag != "Bus"){
+                                print("picking up player ");
+                                GameManager.instance.player.GetComponent<PlayerBehaviour>().inside = this.gameObject;
+                            }
                         }
-                        if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1){
-                            FindObjectOfType<AudioManager>().Play("bus_stop");
+                        if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1 && !returning){
                             currentTargetIndex++;
+                        }else if (!returning){
+                            returning = true;
+                        }else if (currentTargetIndex > 0){
+                            currentTargetIndex--;
                         }else{
-                            currentTargetIndex = 0;
+                            returning = false;
                         }
                     }else{
                         layOverTime--;
                     }
                 }
             }else{
-                if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1){
+                if(currentTargetIndex < busRouteBehaviour.nodesOnRoute.Count-1 && !returning){
                     currentTargetIndex++;
+                }else if (!returning){
+                    returning = true;
+                }else if (currentTargetIndex > 0){
+                    currentTargetIndex--;
                 }else{
-                    currentTargetIndex = 0;
+                    returning = false;
                 }
             }
         } else{
